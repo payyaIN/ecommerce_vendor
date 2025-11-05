@@ -42,7 +42,7 @@ firebase.json
 uploads/
 postman/
 
-multi_vendor_store/build/
+multi_vendor_app/build/
 multi_vendor_webapp/build/
 # Flutter / Android builds
 **/build/
