@@ -43,6 +43,7 @@ uploads/
 postman/
 
 multi_vendor_app/build/
+multi_vendor_app/assets/
 multi_vendor_webapp/build/
 # Flutter / Android builds
 **/build/
