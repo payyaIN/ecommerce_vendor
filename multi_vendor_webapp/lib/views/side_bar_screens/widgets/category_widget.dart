@@ -53,7 +53,9 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                           width: 100,
                           category.image,
                         ),
-                        Text(category.name),
+                        Text(category.name)
+                        // Text(category.name[0].toUpperCase() +
+                        //     category.name.substring(1).toLowerCase()),
                       ],
                     );
                   }),

@@ -19,6 +19,17 @@ class _CategoryScreenState extends State<CategoryScreen> {
   void initState() {
     super.initState();
     futureCategories = CategoryController().loadCategories();
+    //set default selected category to "Fashion"
+    futureCategories.then((categories) {
+      for (var category in categories) {
+        if (category.name == "Fashion") {
+          setState(() {
+            _selectedCategory = category;
+          });
+          _loadSubCategories(category.name);
+        }
+      }
+    });
   }
 
   Future<void> _loadSubCategories(String categoryName) async {

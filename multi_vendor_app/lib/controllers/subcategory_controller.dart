@@ -15,20 +15,26 @@ class SubcategoryController {
 
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
-
+        print("Subcategories are : $data");
+        print("Subcategories response : ${response.body}");
         if (data.isNotEmpty) {
           return data
               .map((subcategory) => SubCategoryModel.fromJson(subcategory))
               .toList();
         } else {
+          print('Subcategories not found');
           return [];
         }
       } else if (response.statusCode == 404) {
+        print('Subcategories not found');
+
         return [];
       } else {
+        print('failed to fetch subcategories');
         return [];
       }
     } catch (e) {
+      print('Error fetching categories: $e');
       return [];
     }
   }
