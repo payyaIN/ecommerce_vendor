@@ -1,5 +1,6 @@
 import 'package:multi_vendor_app/controllers/subcategory_controller.dart';
 import 'package:multi_vendor_app/utils/constants/imports.dart';
+import 'package:multi_vendor_app/view/screens/detail/widgets/subcategory_tite_widget.dart';
 import 'package:multi_vendor_app/view/screens/main_screen/main_screen.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -43,10 +44,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 20),
-        child: const HeaderWidget(),
-      ),
+      // appBar: PreferredSize(
+      //   preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 20),
+      //   child: const HeaderWidget(),
+      // ),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -141,31 +142,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                     ),
                                 itemBuilder: (context, index) {
                                   final subcategory = _subcategories[index];
-                                  return Column(
-                                    children: [
-                                      Container(
-                                        width: 50,
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade200,
-                                        ),
-                                        child: Center(
-                                          child: Image.network(
-                                            subcategory.image,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      Center(
-                                        child: Text(
-                                          subcategory.subCategoryName,
-                                          style: GoogleFonts.quicksand(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                  return SubCategoryTitleWidget(
+                                    image: subcategory.image,
+                                    title: subcategory.subCategoryName,
                                   );
                                 },
                               )

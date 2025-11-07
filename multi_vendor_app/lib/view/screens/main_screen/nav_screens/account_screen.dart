@@ -1,15 +1,19 @@
+import 'package:multi_vendor_app/controllers/auth_controller.dart';
 import 'package:multi_vendor_app/utils/constants/imports.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+class AccountScreen extends StatelessWidget {
+  AccountScreen({super.key});
 
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
+  final AuthController authController = AuthController();
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: ElevatedButton(
+        onPressed: () async {
+          await authController.signOut(context: context);
+        },
+        child: Text("Log out"),
+      ),
+    );
   }
 }

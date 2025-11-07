@@ -15,6 +15,8 @@ const subCategoryRouter = require('./routes/sub_category');
 const productRouter = require('./routes/product');
 //import product review router
 const productReviewRouter = require('./routes/product_review');
+// import vendor router
+const vendorRouter = require('./routes/vendor');
 //import cors
 const cors = require('cors');
 //Cross-Origin Resource Sharing (CORS) - 
@@ -47,6 +49,7 @@ app.use(categoryRouter); //use category router
 app.use(subCategoryRouter);
 app.use(productRouter);
 app.use(productReviewRouter);
+app.use(vendorRouter); //use vendor router
 //start server and listen to this port
 
 app.listen(PORT, "0.0.0.0", function(){

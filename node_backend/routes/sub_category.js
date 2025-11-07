@@ -35,6 +35,10 @@ subCategoryRouter.get('/api/category/:categoryName/subcategories',async (req,res
         const {categoryName} = req.params; 
         //search for categoryName from the request url using destructoring
         const subcategories =await SubCategory.find({categoryName:categoryName});
+//case insensitive search
+        //         const subcategories = await SubCategory.find({
+//     categoryName: { $regex: new RegExp(`^${categoryName}$`, 'i') }
+// });
         if(!subcategories || subcategories.length == 0){
             //if no sub categories are found 
           return  res.status(404).json({msg:"subcategories not found"});

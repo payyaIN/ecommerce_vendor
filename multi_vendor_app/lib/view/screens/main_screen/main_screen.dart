@@ -1,4 +1,5 @@
 import 'package:multi_vendor_app/utils/constants/imports.dart';
+import 'package:multi_vendor_app/view/screens/main_screen/nav_screens/account_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -16,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
     const CategoryScreen(),
     const StorePage(),
     CartPage(),
-    ProfilePage(),
+    AccountScreen(),
   ];
 
   @override

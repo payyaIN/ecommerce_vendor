@@ -65,7 +65,8 @@ authRouter.post('/api/signin/', async (req,res)=>{
                 //     "__v": 0
                 // }
                 //userWithoutPassword --> create user(db) details without password field
-                res.json({token, ...userWithoutPassword}) //user details with token and userWithoutpassword
+                // res.json({token, ...userWithoutPassword}) //user details with token and userWithoutpassword
+                res.json({token, user: userWithoutPassword}) //user details with token and userWithoutpassword
             }
         }
     } catch (e) {
