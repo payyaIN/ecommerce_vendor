@@ -34,45 +34,42 @@ class _CategoryWidgetState extends State<CategoryItemWidget> {
               return const Center(child: Text('No Category'));
             } else {
               final categories = snapshot.data!;
-              return SizedBox(
-                height: 400,
-                child: GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: categories.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 8,
-                    crossAxisSpacing: 8,
-                    crossAxisCount: 4,
-                  ),
-                  itemBuilder: (context, index) {
-                    final category = categories[index];
-
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                InnerCatgoryScreen(categoryModel: category),
-                          ),
-                        );
-                      },
-                      child: Column(
-                        children: [
-                          Image.network(height: 67, width: 77, category.image),
-                          Text(
-                            category.name,
-                            style: GoogleFonts.quicksand(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+              return GridView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: categories.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  crossAxisCount: 4,
                 ),
+                itemBuilder: (context, index) {
+                  final category = categories[index];
+
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              InnerCatgoryScreen(categoryModel: category),
+                        ),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Image.network(height: 67, width: 77, category.image),
+                        Text(
+                          category.name,
+                          style: GoogleFonts.quicksand(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               );
             }
           },

@@ -1,7 +1,7 @@
 import 'package:multi_vendor_vendor_app/utils/constants/imports.dart';
 
 void main() {
-  runApp(ProviderScope(child: const MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {

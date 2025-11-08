@@ -4,3 +4,4 @@ String signInUrl = "$baseUrl/api/signin";
 String categoryUrl = '$baseUrl/api/categories';
 String bannerUrl = '$baseUrl/api/banner';
 String subCategoryUrl = '$baseUrl/api/subcategories';
+String productUrl = '$baseUrl/api/popular-products';

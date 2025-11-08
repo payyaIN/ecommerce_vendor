@@ -1,0 +1,36 @@
+import 'package:multi_vendor_app/utils/constants/imports.dart';
+import 'package:multi_vendor_app/view/screens/main_screen/widgets/category_item_widget.dart';
+import 'package:multi_vendor_app/view/screens/main_screen/widgets/popular_product_widget.dart';
+import 'package:multi_vendor_app/view/screens/main_screen/widgets/reusable_text_widget.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // appBar: PreferredSize(
+      //   preferredSize: Size.fromHeight(
+      //     MediaQuery.of(context).size.height * 0.20,
+      //   ),
+      //   child: const HeaderWidget(),
+      // ),
+      body: const SingleChildScrollView(
+        child: Column(
+          children: [
+            HeaderWidget(),
+            BannerWidget(),
+            CategoryItemWidget(),
+            ReusableTextWidget(title: 'Popular Products', subtitle: 'View All'),
+            PopularProductWidget(),
+          ],
+        ),
+      ),
+    );
+  }
+}

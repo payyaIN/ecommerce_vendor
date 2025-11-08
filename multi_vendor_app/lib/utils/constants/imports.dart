@@ -33,6 +33,7 @@ export 'package:multi_vendor_app/models/category_models.dart';
 export 'package:multi_vendor_app/controllers/category_controller.dart';
 export 'package:multi_vendor_app/view/screens/main_screen/nav_screens/category_screen.dart';
 export 'package:multi_vendor_app/view/screens/main_screen/nav_screens/favourite_screen.dart';
-export 'package:multi_vendor_app/view/screens/main_screen/nav_screens/home_page.dart';
+export 'package:multi_vendor_app/view/screens/main_screen/nav_screens/home_screen.dart';
 export 'package:multi_vendor_app/view/screens/main_screen/nav_screens/store_page.dart';
 export 'package:multi_vendor_app/models/sub_category_model.dart';
+export 'package:multi_vendor_app/models/product_model.dart';

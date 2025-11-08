@@ -44,7 +44,8 @@ class VendorModel {
 
   factory VendorModel.fromMap(Map<String, dynamic> map) {
     return VendorModel(
-      id: map['id'] as String? ?? "",
+      // id: map['id'] as String? ?? "",
+      id: map['_id'] as String? ?? map['id'] as String? ?? "",
       fullName: map['fullName'] as String? ?? "",
       email: map['email'] as String? ?? "",
       state: map['state'] as String? ?? "",
