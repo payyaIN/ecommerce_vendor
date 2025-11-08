@@ -6,7 +6,7 @@ import 'package:multi_vendor_vendor_app/utils/constants/show_scaffold_messenger.
 
 void manageHttpResponse({
   required http.Response response, //http response from request
-
+  required BuildContext context,
   required VoidCallback onSuccess,
 }) {
   switch (response.statusCode) {
@@ -17,7 +17,7 @@ void manageHttpResponse({
       showSnackBar(content: json.decode(response.body)['msg']);
       break;
     case 500: //internal server error
-      showSnackBar(content: json.decode(response.body)['msg']);
+      showSnackBar(content: json.decode(response.body)['error']);
       break;
     case 201: //resource created successfully
       onSuccess();

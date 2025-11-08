@@ -36,6 +36,7 @@ class VendorAuthController {
         headers: header,
       );
       manageHttpResponse(
+        context: context,
         response: response,
         onSuccess: () {
           pushRemoveUntil(context, LoginScreen());
@@ -69,6 +70,7 @@ class VendorAuthController {
       );
 
       manageHttpResponse(
+        context: context,
         response: response,
         onSuccess: () async {
           SharedPreferences preferences = await SharedPreferences.getInstance();

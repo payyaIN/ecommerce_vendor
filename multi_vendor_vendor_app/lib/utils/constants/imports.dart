@@ -19,7 +19,7 @@ export 'package:multi_vendor_vendor_app/views/screens/authentication_screens/log
 export 'package:multi_vendor_vendor_app/views/screens/authentication_screens/register_screen/register_screen.dart';
 export 'package:multi_vendor_vendor_app/views/screens/authentication_screens/login_screen/login_screen.dart';
 export 'package:multi_vendor_vendor_app/views/screens/authentication_screens/register_screen/reg_components/reg_text.dart';
-export 'package:multi_vendor_vendor_app/models/vendor.dart';
+export 'package:multi_vendor_vendor_app/models/vendor_model.dart';
 export 'dart:convert';
 export 'dart:io';
 export 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,3 +30,14 @@ export 'package:multi_vendor_vendor_app/utils/constants/show_scaffold_messenger.
 export 'package:multi_vendor_vendor_app/views/screens/main_screen/main_vendor_screen.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:multi_vendor_vendor_app/provider/vendor_provider.dart';
+export 'package:image_picker/image_picker.dart';
+export 'package:multi_vendor_vendor_app/views/screens/nav_screens/earnings_screen.dart';
+export 'package:multi_vendor_vendor_app/views/screens/nav_screens/edit_screen.dart';
+export 'package:multi_vendor_vendor_app/views/screens/nav_screens/orders_screen.dart';
+export 'package:multi_vendor_vendor_app/views/screens/nav_screens/upload_screen.dart';
+export 'package:multi_vendor_vendor_app/views/screens/nav_screens/vendor_profile_screen.dart';
+export 'package:cloudinary_public/cloudinary_public.dart';
+export 'package:multi_vendor_vendor_app/models/category_models.dart';
+export 'package:multi_vendor_vendor_app/controllers/category_controller.dart';
+export 'package:multi_vendor_vendor_app/models/sub_category_model.dart';
+export 'package:multi_vendor_vendor_app/models/product_model.dart';

@@ -5,9 +5,9 @@ const productRouter = express.Router();
 
 productRouter.post('/api/add-product', async (req, res)=> {
     try {
-        const {productName, productPrice,quantity, discription,category,subCategory,images} = req.body;
+        const {productName, productPrice,quantity, discription,category,subCategory,vendorId,fullName,images} = req.body;
         //popular and recommand fields are defualt - so we don't need to pass
-        const product = new Product({productName, productPrice,quantity, discription,category,subCategory,images});
+        const product = new Product({productName, productPrice,quantity, discription,category,subCategory,vendorId,fullName,images});
         await product.save();
         return res.status(201).send(product);
     } catch (e) {
