@@ -58,6 +58,8 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final fullName = ref.read(vendorProvider)!.fullName;
+    final vendorId = ref.read(vendorProvider)!.id;
     return Form(
       key: _formKey,
       child: Column(
@@ -252,10 +254,11 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
             child: InkWell(
               onTap: () async {
                 if (_formKey.currentState!.validate()) {
-                  // showSnackBar(content: "Uploaded Successfully");
-                  // print("Uploaded..");
-                  final fullName = ref.read(vendorProvider)!.fullName;
-                  final vendorId = ref.read(vendorProvider)!.id;
+                  print("vendor details: $vendorId, $fullName");
+                  print(
+                    "vendor-product details: $productName, $productPrice, $productQuantity, $productDescription, $images, $selectedCategory, $selectedSubCategory, $vendorId, $fullName",
+                  );
+
                   _productController.uploadProduct(
                     context: context,
                     productName: productName,
@@ -263,9 +266,9 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                     quantity: productQuantity,
                     description: productDescription,
                     pickedImages: images,
-                    category: selectedCategory!.name.toString(),
-                    subCategory: selectedSubCategory!.subCategoryName
-                        .toString(),
+                    category: selectedCategory!.name,
+                    subCategory: selectedSubCategory!.subCategoryName,
+
                     vendorId: vendorId,
                     fullName: fullName,
                   );

@@ -13,12 +13,15 @@ class MyApp extends ConsumerWidget {
     //retrive vendor data & token from shared preferences
     String? token = prefs.getString('auth_token');
     String? vendorJson = prefs.getString('vendor');
-
+    print('Token: ${token != null ? "exists" : "null"}');
+    print('VendorJson: $vendorJson');
     //if both token & vendor data are available, update the vendor state
     if (token != null && vendorJson != null) {
       ref.read(vendorProvider.notifier).setVendor(vendorJson);
+      print('DEBUG - Vendor set: ${ref.read(vendorProvider)?.fullName}');
     } else {
       ref.read(vendorProvider.notifier).signOut();
+      print('Vendor signed out');
     }
   }
 
