@@ -1,77 +1,75 @@
+import 'package:multi_vendor_app/provider/category_provider.dart';
 import 'package:multi_vendor_app/utils/constants/imports.dart';
 import 'package:multi_vendor_app/view/screens/detail/screens/inner_category_screen.dart';
 import 'package:multi_vendor_app/view/screens/main_screen/widgets/reusable_text_widget.dart';
 
-class CategoryItemWidget extends StatefulWidget {
+class CategoryItemWidget extends ConsumerStatefulWidget {
   const CategoryItemWidget({super.key});
 
   @override
-  State<CategoryItemWidget> createState() => _CategoryWidgetState();
+  ConsumerState<CategoryItemWidget> createState() => _CategoryItemWidgetState();
 }
 
-class _CategoryWidgetState extends State<CategoryItemWidget> {
-  late Future<List<CategoryModel>> futureCategories;
+class _CategoryItemWidgetState extends ConsumerState<CategoryItemWidget> {
+  // late Future<List<CategoryModel>> futureCategories;
 
   @override
   void initState() {
     super.initState();
-    futureCategories = CategoryController().loadCategories();
+    // futureCategories = CategoryController().loadCategories();
+    _fetchCategories();
+  }
+
+  Future<void> _fetchCategories() async {
+    final CategoryController categoryController = CategoryController();
+    try {
+      final categories = await categoryController.loadCategories();
+      ref.read(categoryProvider.notifier).setCategories(categories);
+    } catch (e) {}
   }
 
   @override
   Widget build(BuildContext context) {
+    final categories = ref.watch(categoryProvider);
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const ReusableTextWidget(title: "Categories", subtitle: 'View All'),
-        FutureBuilder(
-          future: futureCategories,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return Center(child: Text('error: ${snapshot.error}'));
-            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Center(child: Text('No Category'));
-            } else {
-              final categories = snapshot.data!;
-              return GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: categories.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
-                  crossAxisCount: 4,
-                ),
-                itemBuilder: (context, index) {
-                  final category = categories[index];
-
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              InnerCatgoryScreen(categoryModel: category),
-                        ),
-                      );
+        const ReusableTextWidget(title: 'Categories', subtitle: 'View All'),
+        GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: categories.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 8,
+          ),
+          itemBuilder: (context, index) {
+            final category = categories[index];
+            return InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return InnerCatgoryScreen(categoryModel: category);
                     },
-                    child: Column(
-                      children: [
-                        Image.network(height: 67, width: 77, category.image),
-                        Text(
-                          category.name,
-                          style: GoogleFonts.quicksand(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+                  ),
+                );
+              },
+              child: Column(
+                children: [
+                  Image.network(category.image, height: 47, width: 47),
+                  Text(
+                    category.name,
+                    style: GoogleFonts.montserrat(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
-                  );
-                },
-              );
-            }
+                  ),
+                ],
+              ),
+            );
           },
         ),
       ],

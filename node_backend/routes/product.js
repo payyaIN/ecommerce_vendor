@@ -29,12 +29,12 @@ productRouter.get('/api/popular-products',async (req,res) => {
 
     //we dont put /:popular/ bcoz - we know the popular value
     try {
-        const products = await Product.find({popular:true});
+        const product = await Product.find({popular:true});
        
-       if(!products || products.length == 0){
+       if(!product || product.length == 0){
      return   res.status(404).json({msg:"products not found"});
        }else{
-       return res.status(200).json(products);
+       return res.status(200).json(product);
        }
     } catch (e) {
         res.status(500).json({error:e.message});
@@ -54,4 +54,18 @@ productRouter.get('/api/recommend-products',async (req,res)=>{
     }
 });
 
+//new route for retrieving products by category
+productRouter.get('/api/products-by-category/:category', async(req,res)=>{
+  try {
+    const {category} = req.params;
+    const products =  await Product.find({category,popular:true});
+    if(!products|| products.length==0){
+      return res.status(404).json({msg:"Product not found"});
+    }else{
+      return res.status(200).json(products);
+    }
+  } catch (e) {
+    res.status(500).json({error:e.message});
+  }
+});
 module.exports = productRouter;

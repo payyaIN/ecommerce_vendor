@@ -1,5 +1,6 @@
 import 'package:multi_vendor_app/utils/constants/imports.dart';
 import 'package:multi_vendor_app/view/screens/main_screen/nav_screens/account_screen.dart';
+import 'package:multi_vendor_app/view/screens/main_screen/nav_screens/cart_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -16,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
     const FavouriteScreen(),
     const CategoryScreen(),
     const StorePage(),
-    CartPage(),
+    const CartScreen(),
     AccountScreen(),
   ];
 
@@ -62,26 +63,5 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: _pages[_pageIndex],
     );
-  }
-}
-
-class SearchPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Search Page'));
-  }
-}
-
-class CartPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Cart Page'));
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Profile Page'));
   }
 }

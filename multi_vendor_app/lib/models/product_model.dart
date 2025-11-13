@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class ProductModel {
@@ -7,12 +8,10 @@ class ProductModel {
   final int quantity;
   final String description;
   final String category;
+  final String subCategory;
   final String vendorId;
   final String fullName;
-  final String subCategory;
   final List<String> images;
-  final double averageRating;
-  final int totalRatings;
 
   ProductModel({
     required this.id,
@@ -21,12 +20,10 @@ class ProductModel {
     required this.quantity,
     required this.description,
     required this.category,
+    required this.subCategory,
     required this.vendorId,
     required this.fullName,
-    required this.subCategory,
     required this.images,
-    required this.averageRating,
-    required this.totalRatings,
   });
 
   Map<String, dynamic> toMap() {
@@ -37,12 +34,10 @@ class ProductModel {
       'quantity': quantity,
       'description': description,
       'category': category,
+      'subCategory': subCategory,
       'vendorId': vendorId,
       'fullName': fullName,
-      'subCategory': subCategory,
       'images': images,
-      'averageRating': averageRating,
-      'totalRatings': totalRatings,
     };
   }
 
@@ -54,14 +49,10 @@ class ProductModel {
       quantity: map['quantity'] as int,
       description: map['description'] as String,
       category: map['category'] as String,
+      subCategory: map['subCategory'] as String,
       vendorId: map['vendorId'] as String,
       fullName: map['fullName'] as String,
-      subCategory: map['subCategory'] as String,
       images: List<String>.from((map['images'] as List<dynamic>)),
-      averageRating: (map['averageRating'] is int
-          ? (map['averageRating'] as int).toDouble()
-          : map['averageRating'] as double),
-      totalRatings: map['totalRatings'] as int,
     );
   }
 

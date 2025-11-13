@@ -15,7 +15,7 @@ class _MainVendorScreenState extends State<MainVendorScreen> {
     const EarningsScreen(),
     const UploadScreen(),
     const EditScreen(),
-    const OrdersScreen(),
+    const OrderScreen(),
     const VendorProfileScreen(),
   ];
 

@@ -31,34 +31,36 @@ class ProductController {
     }
   }
 
-  // //load product by category function
-  //   Future<List<ProductModel>> loadProductByCategory(String category) async {
-  //     try {
-  //       http.Response response = await http.get(
-  //         Uri.parse('$uri/api/products-by-category/$category'),
-  //         headers: <String, String>{
-  //           'Content-Type': 'application/json; chartset=UTF-8 ',
-  //         },
-  //       );
-  //       if (response.statusCode == 200) {
-  //         //Decode the json response body into a list  of dynamic object
-  //         final List<dynamic> data = json.decode(response.body) as List<dynamic>;
-  //         //map each items in the list to product model object which we can use
+  //load product by category function
+  Future<List<ProductModel>> loadProductByCategory(String category) async {
+    try {
+      var uri = getProductByCategoryUrl(category);
+      var url = Uri.parse(uri);
+      Map<String, String> headers = {
+        'Content-Type': 'application/json; charset=UTF-8',
+      };
 
-  //         List<ProductModel> products = data
-  //             .map((product) => ProductModel.fromMap(product as Map<String, dynamic>))
-  //             .toList();
-  //         return products;
-  //       } else if (response.statusCode == 404) {
-  //         return [];
-  //       } else {
-  //         //if status code is not 200 , throw an execption   indicating failure to load the popular products
-  //         throw Exception('Failed to load popular products');
-  //       }
-  //     } catch (e) {
-  //       throw Exception('Error loading product : $e');
-  //     }
-  //   }
+      http.Response response = await http.get(url, headers: headers);
+      if (response.statusCode == 200) {
+        //Decode the json response body into a list  of dynamic object
+        final List<dynamic> data = json.decode(response.body) as List<dynamic>;
+        //map each items in the list to product model object which we can use
+
+        List<ProductModel> products = data
+            .map(
+              (product) =>
+                  ProductModel.fromMap(product as Map<String, dynamic>),
+            )
+            .toList();
+        return products;
+      } else {
+        //if status code is not 200 , throw an execption   indicating failure to load the popular products
+        throw Exception('Failed to load products by category');
+      }
+    } catch (e) {
+      throw Exception('Error loading product by category : $e');
+    }
+  }
 
   //   //display related products by subcategory
   //   Future<List<ProductModel>> loadRelatedProductsBySubcategory(

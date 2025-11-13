@@ -1,9 +1,8 @@
-import 'package:flutter_riverpod/legacy.dart';
-import 'package:multi_vendor_app/models/usermodel.dart';
+import 'package:multi_vendor_app/utils/constants/imports.dart';
 
 class UserProvider extends StateNotifier<UserModel?> {
-  //initialize constructor with user default objects
-  //purpose - managing the state of user objects
+  // contructor initializing with default User Object
+  //purpose: Mangae the state of the user  object allowing updates
   UserProvider()
     : super(
         UserModel(
@@ -12,27 +11,50 @@ class UserProvider extends StateNotifier<UserModel?> {
           email: '',
           state: '',
           city: '',
-          password: '',
           locality: '',
+          password: '',
           token: '',
         ),
       );
 
-  //Getter method - to extract value from user object
+  //Getter method to extract value from an object
+
   UserModel? get user => state;
 
-  //Setter method - to set the user state from json
-  //purpose - update the user state based on - json string representation of user object
+  //method to set user state from Json
+  //purpose : updates he user sate base on json String respresentation of user Object
+
   void setUser(String userJson) {
     state = UserModel.fromJson(userJson);
   }
 
+  //Method to clear user state
   void signOut() {
     state = null;
   }
-}
-//Making the data accessible throughout the app
 
+  //Method to Recreate the user state
+  void recreateUserState({
+    required String state,
+    required String city,
+    required String locality,
+  }) {
+    if (this.state != null) {
+      this.state = UserModel(
+        id: this.state!.id, //Preserve the existing user id
+        fullName: this.state!.fullName, // preserve the existing user fullname
+        email: this.state!.email, // preserve the existing user email
+        state: state,
+        city: city,
+        locality: locality,
+        password: this.state!.password, // preserve the existing user password
+        token: this.state!.token, // preserve the existing user token
+      );
+    }
+  }
+}
+
+//make the data accisible within the application
 final userProvider = StateNotifierProvider<UserProvider, UserModel?>(
   (ref) => UserProvider(),
 );

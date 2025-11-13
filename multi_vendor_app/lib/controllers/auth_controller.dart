@@ -110,7 +110,10 @@ class AuthController {
   }
 
   //signout
-  Future<void> signOut({required BuildContext context}) async {
+  Future<void> signOutUser({
+    required BuildContext context,
+    required WidgetRef ref,
+  }) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -125,6 +128,52 @@ class AuthController {
       showSnackBar(content: 'User Signout Successfull');
     } catch (e) {
       showSnackBar(content: "Error Signing out:$e");
+    }
+  }
+
+  //update user's state, city and locality
+  Future<void> updateUserLocation({
+    required BuildContext context,
+    required String id,
+    required String state,
+    required String city,
+    required String locality,
+    required WidgetRef ref,
+  }) async {
+    try {
+      var uri = updateUserLocUrl(id);
+      var url = Uri.parse(uri);
+      Map<String, String> header = {
+        'Content-Type': 'application/json; charset=utf-8',
+      };
+
+      var body = jsonEncode({
+        'state': state,
+        'city': city,
+        'locality': locality,
+      });
+
+      http.Response response = await http.put(url, headers: header, body: body);
+      manageHttpResponse(
+        response: response,
+        onSuccess: () async {
+          //decode the updated user data from response body
+          //this converts the json response into dart map
+          final updateduser = jsonDecode(response.body);
+          SharedPreferences preferences = await SharedPreferences.getInstance();
+          //encode the updated user data as json string for storage
+          final userJson = jsonEncode(updateduser);
+          //update app state with updated user data
+          providerContainer.read(userProvider.notifier).setUser(userJson);
+          //store updated user in shared pref
+          await preferences.setString('user', userJson);
+
+          showSnackBar(content: 'User Location Updated Successfully');
+        },
+      );
+    } catch (e) {
+      print('error creatinguser:$e');
+      showSnackBar(content: 'Error Updating User Location:$e ');
     }
   }
 }
